@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Chess" default="default" basedir=".">
+    <description>Builds, tests, and runs the project Chess.</description>
+    <import file="nbproject/build-impl.xml"/>
+
+	<target name="-post-jar">
+		<copy todir="dist/lib/linux">
+			<fileset dir="../../Lib/Bianisoft2/dependenciesLibs/lwjgl-2.9.3/native/linux">
+				<include name="*"/>
+			</fileset>
+		</copy>
+		<copy todir="dist/lib/macosx">
+			<fileset dir="../../Lib/Bianisoft2/dependenciesLibs/lwjgl-2.9.3/native/macosx">
+				<include name="*"/>
+			</fileset>
+		</copy>
+		<copy todir="dist/lib/solaris">
+			<fileset dir="../../Lib/Bianisoft2/dependenciesLibs/lwjgl-2.9.3/native/solaris">
+				<include name="*"/>
+			</fileset>
+		</copy>
+		<copy todir="dist/lib/windows">
+			<fileset dir="../../Lib/Bianisoft2/dependenciesLibs/lwjgl-2.9.3/native/windows">
+				<include name="*"/>
+			</fileset>
+		</copy>
+	</target>
+</project>

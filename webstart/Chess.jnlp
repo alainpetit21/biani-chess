@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0+" codebase="./" href="Chess.jnlp" version="1.2">
+
+	<information>
+		<title>Chess Demo</title>
+		<vendor>Alain Petit</vendor>
+		<homepage href="http://www.alainpetit.me/"/>
+		<description>Chess Demo</description>
+		<description kind="short">Chess.</description>
+	</information>
+	<update check="background" policy="always"/>
+
+	<security>
+		<all-permissions/>
+	</security>
+
+	<resources>
+		<j2se href="http://java.sun.com/products/autodl/j2se" version="1.6+"/>
+		<property name="sun.java2d.noddraw" value="true"/>
+		<extension name="LWJGL" href="LWJGL.jnlp"/>
+		<jar href="Chess.jar" main="true" version="1.2"/>
+		<jar href="Chess_res.jar" version="1.2"/>
+		<jar href="lib/Bianisoft2.jar" version="0.1.2"/>
+		<jar href="lib/jogg-0.0.7.jar" version="0.0.7"/>
+		<jar href="lib/jorbis-0.0.15.jar" version="0.0.15"/>
+	</resources>
+
+	<applet-desc
+         name="JavaTest Applet"
+         main-class="com.bianisoft.games.chess.AppletChess"
+         width="640"
+         height="480">
+    </applet-desc>
+</jnlp>
