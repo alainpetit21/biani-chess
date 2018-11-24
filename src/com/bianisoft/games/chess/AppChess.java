@@ -36,10 +36,12 @@ public class AppChess extends App{
 		super("AppChess", 640, 480, false);
 	}
 
+    @Override
 	public String getVersion(){
 		return "1.2";
 	}
 
+    @Override
 	public void load(){
 //		addContext(new CtxTitle());
 //		addContext(new CtxHelp());

@@ -25,7 +25,7 @@ package com.bianisoft.games.chess;
 
 
 //Standard Java imports
-import java.util.Vector;
+import java.util.ArrayList;
 
 
 public class AI {
@@ -89,31 +89,39 @@ public class AI {
 	public MoveCoordinator	m_objMover;
 
 	public int		m_nScoreMax;
-	public int[]	m_nScore= new int[2];
-
-	//Few Pieces shortcuts
-	private	SprPiece[]	m_pieceKing		= new SprPiece[2];
-	private	Vector[]	m_vecAllPieces	= new Vector[2];
-	private	Vector[]	m_vecAllRooks	= new Vector[2];
-	private	Vector[]	m_vecAllKnights	= new Vector[2];
-	private	Vector[]	m_vecAllBishops	= new Vector[2];
-	private	Vector[]	m_vecAllPawns	= new Vector[2];
+	public int[]	m_nScore;
+    
+    //Few Pieces shortcuts
+	private final	SprPiece[]	m_pieceKing;
+	private final	ArrayList[]	m_vecAllPieces;
+	private final	ArrayList[]	m_vecAllRooks;
+	private final	ArrayList[]	m_vecAllKnights;
+	private final	ArrayList[]	m_vecAllBishops;
+	private final	ArrayList[]	m_vecAllPawns;
 
 
 	public AI(Board p_objBoard, MoveCoordinator p_objCoordinator){
+        m_vecAllPawns   = new ArrayList[2];
+        m_vecAllBishops = new ArrayList[2];
+        m_vecAllKnights = new ArrayList[2];
+        m_vecAllRooks   = new ArrayList[2];
+        m_vecAllPieces  = new ArrayList[2];
+        m_pieceKing     = new SprPiece[2];
+        m_nScore        = new int[2];
+        
 		m_objBoard= p_objBoard;
 		m_objMover= p_objCoordinator;
 
-		m_vecAllPieces[0]	= new Vector();
-		m_vecAllPieces[1]	= new Vector();
-		m_vecAllRooks[0]	= new Vector();
-		m_vecAllRooks[1]	= new Vector();
-		m_vecAllKnights[0]	= new Vector();
-		m_vecAllKnights[1]	= new Vector();
-		m_vecAllBishops[0]	= new Vector();
-		m_vecAllBishops[1]	= new Vector();
-		m_vecAllPawns[0]	= new Vector();
-		m_vecAllPawns[1]	= new Vector();
+		m_vecAllPieces[0]	= new ArrayList();
+		m_vecAllPieces[1]	= new ArrayList();
+		m_vecAllRooks[0]	= new ArrayList();
+		m_vecAllRooks[1]	= new ArrayList();
+		m_vecAllKnights[0]	= new ArrayList();
+		m_vecAllKnights[1]	= new ArrayList();
+		m_vecAllBishops[0]	= new ArrayList();
+		m_vecAllBishops[1]	= new ArrayList();
+		m_vecAllPawns[0]	= new ArrayList();
+		m_vecAllPawns[1]	= new ArrayList();
 	}
 
 	public void load(){
@@ -126,16 +134,25 @@ public class AI {
 
 				m_vecAllPieces[piece.getTeam()].add(piece);
 
-				if(piece.getType() == SprPiece.PIECE_KING)
-					m_pieceKing[piece.getTeam()]= piece;
-				else if(piece.getType() == SprPiece.PIECE_ROOK)
-					m_vecAllRooks[piece.getTeam()].add(piece);
-				else if(piece.getType() == SprPiece.PIECE_KNIGHT)
-					m_vecAllKnights[piece.getTeam()].add(piece);
-				else if(piece.getType() == SprPiece.PIECE_BISHOP)
-					m_vecAllBishops[piece.getTeam()].add(piece);
-				else if(piece.getType() == SprPiece.PIECE_PAWN)
-					m_vecAllPawns[piece.getTeam()].add(piece);
+                switch (piece.getType()) {
+                    case SprPiece.PIECE_KING:
+                        m_pieceKing[piece.getTeam()]= piece;
+                        break;
+                    case SprPiece.PIECE_ROOK:
+                        m_vecAllRooks[piece.getTeam()].add(piece);
+                        break;
+                    case SprPiece.PIECE_KNIGHT:
+                        m_vecAllKnights[piece.getTeam()].add(piece);
+                        break;
+                    case SprPiece.PIECE_BISHOP:
+                        m_vecAllBishops[piece.getTeam()].add(piece);
+                        break;
+                    case SprPiece.PIECE_PAWN:
+                        m_vecAllPawns[piece.getTeam()].add(piece);
+                        break;
+                    default:
+                        break;
+                }
 			}
 		}
 	}
